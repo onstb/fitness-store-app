@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block content %}
+    <section class="bg-light p-3">
+        <h1 style="background-color:#0c223a ;color:#d946ef ;text-align: center ">GymStore</h1>
+    </section>
+
+    <section class="row">
+        {% for product in products %}
+            <div class="col-4 mt-4">
+                <div class="border border-dark rounded p-2 clearfix" style="background-color: #0c223a">
+                    <h2 style="color:#d946ef ">{{ product.title }}</h2>
+                    <p style="color: #fff1f2">{{ product.price }} €</p>
+                    <img class="w-100" src="{{ asset('img/') ~ product.image }}" alt="Image de {{ product.title }}">
+                    <hr>
+                    <a href="{{path("cart_add", {id: product.id})}}" class="btn btn-success">
+                        <i class="bi bi-cart-plus"></i> Ajouter
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+
+
+        <div class="navigation" style="margin:30px" aria-label="Page navigation example" >
+           {{ knp_pagination_render(products) }}
+        </div>
+
+
+
+
+    </section>
+
+
+
+
+
+
+{% endblock %}
